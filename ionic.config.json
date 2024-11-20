@@ -1,0 +1,7 @@
+{
+  "name": "ng-calc-tabs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
