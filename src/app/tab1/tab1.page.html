@@ -1,17 +1,89 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header >
+  <ion-toolbar color="warning">
+    <ion-icon slot="start" size="large" name="calculator-sharp"></ion-icon>
+    <ion-title>Calculadora de Eficiência</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="img_container">
+    <ion-img src="../../assets/imgs/posto_ALIEN.png" alt="posto"></ion-img>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="container">
+    <ion-grid>
+      <ion-row class="paragrafo">
+        Insira o Desempenho do seu veiculo em km/l fornecido pelo computador de bordo:
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="etanol">
+            <ion-card-header>
+              Etanol (Km/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="desempetanol" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="gasolina">
+            <ion-card-header>
+              Gasolina (Km/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="desempgas" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="paragrafo">
+        Insira o Valor do Combustível:
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="etanol">
+            <ion-card-header>
+              Etanol (R$/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="precoetanol" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="gasolina">
+            <ion-card-header>
+              Gasolina (R$/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="precogas" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button color="warning" 
+    (click)="funcao(); setOpen(true)"
+    id="present-alert" 
+    expand="full" 
+    shape="round">
+    Calcular</ion-button>
+
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      Publicidade
+  </ion-toolbar>
+</ion-footer>
+
+<ion-alert class="custom-alert"
+  [isOpen]="isAlertOpen"
+  message="{{resultado}}"
+  [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert> 
