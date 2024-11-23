@@ -1,17 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+<ion-header >
+  <ion-toolbar color="danger">
+    <ion-icon slot="start" size="large" name="location-sharp"></ion-icon>
+    <ion-title>Calculadora de Eficiência</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+      localização: {{ localAtual }}
+    </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="mapa">
+    <app-mapa></app-mapa>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      Publicidade
+  </ion-toolbar>
+</ion-footer>

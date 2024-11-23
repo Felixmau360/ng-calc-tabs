@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    height: 100%; /* Garante que o componente ocupe o espaço total do contêiner */
+  }
+  
+  .mapa {
+    height: 100%; /* Garante que o mapa ocupe todo o espaço do componente */
+    width: 100%; /* Garante que o mapa ocupe toda a largura */
+  }

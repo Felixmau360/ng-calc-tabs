@@ -1,0 +1,143 @@
+import { Component, AfterViewInit } from '@angular/core';
+import { Geolocation } from '@capacitor/geolocation';
+
+declare var google: any;
+
+@Component({
+  selector: 'app-mapa',
+  templateUrl: './mapa.component.html',
+  styleUrls: ['./mapa.component.scss'],
+})
+export class MapaComponent implements AfterViewInit {
+  map: any;
+  mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
+  geocoder = new google.maps.Geocoder();
+  userAddress: string = '';
+
+  constructor() {}
+
+  async ngAfterViewInit() {
+    try {
+      const coordinates = await this.getCurrentPosition();
+
+      if (coordinates && coordinates.coords) {
+        const latLng = {
+          lat: coordinates.coords.latitude,
+          lng: coordinates.coords.longitude,
+        };
+
+        this.initMap(latLng); // Inicializa o mapa
+        this.createCurrentLocationMarker(latLng); // Marcador azul
+        this.addRecenterButton(); // Botão de re-centralizar
+        this.geocodeLatLng(latLng); // Converte coordenadas para endereço
+        this.findNearbyGasStations(latLng); // Busca postos de gasolina
+      } else {
+        console.error('Coordinates ou coords não disponíveis.');
+      }
+    } catch (error) {
+      console.error('Erro ao obter a posição atual:', error);
+    }
+  }
+
+  async getCurrentPosition() {
+    return await Geolocation.getCurrentPosition();
+  }
+
+  initMap(latLng: { lat: number; lng: number }) {
+    const mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapId: this.mapId,
+    };
+
+    const mapElement = document.getElementById('map');
+    this.map = new google.maps.Map(mapElement, mapOptions);
+  }
+
+  createCurrentLocationMarker(latLng: { lat: number; lng: number }) {
+    new google.maps.Marker({
+      map: this.map,
+      position: latLng,
+      title: 'Sua localização',
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: '#0000FF', // Azul
+        fillOpacity: 1,
+        scale: 10,
+        strokeColor: '#FFFFFF', // Contorno branco
+        strokeWeight: 2,
+      },
+    });
+  }
+
+  geocodeLatLng(latLng: { lat: number; lng: number }) {
+    this.geocoder.geocode({ location: latLng }, (results: any[], status: string) => {
+      if (status === 'OK' && results?.length > 0) {
+        this.userAddress = results[0].formatted_address;
+        console.log('Endereço:', this.userAddress);
+      } else {
+        console.error('Erro na geocodificação:', status);
+      }
+    });
+  }
+
+  findNearbyGasStations(latLng: { lat: number; lng: number }) {
+    const service = new google.maps.places.PlacesService(this.map);
+    const request = {
+      location: latLng,
+      radius: 5000, // 5 km
+      type: 'gas_station',
+    };
+
+    service.nearbySearch(request, (results: any[], status: any) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+        results.forEach((place) => this.createNearbyPlaceMarker(place));
+      }
+    });
+  }
+
+  createNearbyPlaceMarker(place: any) {
+    new google.maps.Marker({
+      map: this.map,
+      position: place.geometry.location,
+      title: place.name,
+    });
+  }
+
+  addRecenterButton() {
+    const recenterButton = document.createElement('button');
+
+    recenterButton.innerHTML = `
+      <i class="fa fa-location-arrow" style="margin-right: 8px; color: #c5000f"></i>
+      Meu Local`; // Adiciona o ícone e o texto
+
+    recenterButton.style.background = 'white';
+    recenterButton.style.display = 'flex';
+    recenterButton.style.alignItems = 'center';
+    recenterButton.style.justifyContent = 'center';
+    recenterButton.style.padding = '10px';
+    recenterButton.style.margin = '10px';
+    recenterButton.style.cursor = 'pointer';
+    recenterButton.style.border = '1px solid #ccc';
+    recenterButton.style.borderRadius = '4px';
+    recenterButton.style.fontSize = '14px';
+
+
+    recenterButton.addEventListener('click', async () => {
+      try {
+        const coordinates = await this.getCurrentPosition();
+        if (coordinates && coordinates.coords) {
+          const newLatLng = {
+            lat: coordinates.coords.latitude,
+            lng: coordinates.coords.longitude,
+          };
+          this.map.setCenter(newLatLng);
+        }
+      } catch (error) {
+        console.error('Erro ao obter a posição atual:', error);
+      }
+    });
+
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(recenterButton);
+  }
+}
