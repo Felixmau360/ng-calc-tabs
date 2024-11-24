@@ -1,14 +1,16 @@
 <ion-header >
-  <ion-toolbar color="success">
+  <ion-toolbar color="danger">
     <ion-icon slot="start" size="large" name="calculator-sharp"></ion-icon>
     <ion-title>Calculadora de Eficiência</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="img_container">
-    <ion-img src="../../assets/imgs/star_gas.png" alt="posto"></ion-img>
-  </div>
+<ion-content color="danger">
+  <ion-card color="danger" class="img_container">
+    <ion-card-content>
+      <ion-img src="../../assets/imgs/star_gas.png" alt="posto"></ion-img>
+    </ion-card-content>
+  </ion-card>
 
   <div class="container">
     <ion-grid>
@@ -65,11 +67,10 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button color="warning" 
+    <ion-button
     (click)="funcao(); setOpen(true)"
     id="present-alert" 
-    expand="full" 
-    shape="round">
+    expand="block">
     Calcular</ion-button>
 
   </div>
