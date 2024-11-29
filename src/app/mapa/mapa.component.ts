@@ -11,7 +11,7 @@ declare var google: any;
 export class MapaComponent implements AfterViewInit {
   map: any;
   mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
-  geocoder = new google.maps.Geocoder();
+  geocoder: any;
   userAddress: string = '';
 
   constructor() {}
@@ -19,21 +19,16 @@ export class MapaComponent implements AfterViewInit {
   async ngAfterViewInit() {
     try {
       const coordinates = await this.getCurrentPosition();
+      const latLng = {
+        lat: coordinates.coords.latitude,
+        lng: coordinates.coords.longitude,
+      };
 
-      if (coordinates && coordinates.coords) {
-        const latLng = {
-          lat: coordinates.coords.latitude,
-          lng: coordinates.coords.longitude,
-        };
-
-        this.initMap(latLng); // Inicializa o mapa
-        this.createCurrentLocationMarker(latLng); // Marcador azul
-        this.addRecenterButton(); // Botão de re-centralizar
-        this.geocodeLatLng(latLng); // Converte coordenadas para endereço
-        this.findNearbyGasStations(latLng); // Busca postos de gasolina
-      } else {
-        console.error('Coordinates ou coords não disponíveis.');
-      }
+      this.initMap(latLng);
+      this.createCurrentLocationMarker(latLng);
+      this.addRecenterButton();
+      this.geocodeLatLng(latLng);
+      this.findNearbyGasStations(latLng);
     } catch (error) {
       console.error('Erro ao obter a posição atual:', error);
     }
@@ -52,6 +47,7 @@ export class MapaComponent implements AfterViewInit {
 
     const mapElement = document.getElementById('map');
     this.map = new google.maps.Map(mapElement, mapOptions);
+    this.geocoder = new google.maps.Geocoder();
   }
 
   createCurrentLocationMarker(latLng: { lat: number; lng: number }) {
@@ -61,10 +57,10 @@ export class MapaComponent implements AfterViewInit {
       title: 'Sua localização',
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        fillColor: '#0000FF', // Azul
+        fillColor: '#0000FF',
         fillOpacity: 1,
         scale: 10,
-        strokeColor: '#FFFFFF', // Contorno branco
+        strokeColor: '#FFFFFF',
         strokeWeight: 2,
       },
     });
@@ -85,7 +81,7 @@ export class MapaComponent implements AfterViewInit {
     const service = new google.maps.places.PlacesService(this.map);
     const request = {
       location: latLng,
-      radius: 5000, // 5 km
+      radius: 5000,
       type: 'gas_station',
     };
 
@@ -97,31 +93,30 @@ export class MapaComponent implements AfterViewInit {
   }
 
   createNearbyPlaceMarker(place: any) {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.map,
       position: place.geometry.location,
       title: place.name,
+    });
+
+    marker.addListener('click', () => {
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+      const wazeUrl = `waze://?ll=${lat},${lng}&navigate=yes`;
+
+      const isGoogleMapsOpened = window.open(googleMapsUrl, '_system');
+      if (!isGoogleMapsOpened) {
+        window.open(wazeUrl, '_system');
+      }
     });
   }
 
   addRecenterButton() {
     const recenterButton = document.createElement('button');
-
-    recenterButton.innerHTML = `
-      <i class="fa fa-location-arrow" style="margin-right: 8px; color: #c5000f"></i>
-      Meu Local`; // Adiciona o ícone e o texto
-
-    recenterButton.style.background = 'white';
-    recenterButton.style.display = 'flex';
-    recenterButton.style.alignItems = 'center';
-    recenterButton.style.justifyContent = 'center';
-    recenterButton.style.padding = '10px';
-    recenterButton.style.margin = '10px';
-    recenterButton.style.cursor = 'pointer';
-    recenterButton.style.border = '1px solid #ccc';
-    recenterButton.style.borderRadius = '4px';
-    recenterButton.style.fontSize = '14px';
-
+    recenterButton.innerHTML = `<ion-icon name="location-sharp" style="margin-right: 8px;"></ion-icon>Meu Local`;
+    recenterButton.classList.add('recenter-button');
 
     recenterButton.addEventListener('click', async () => {
       try {
