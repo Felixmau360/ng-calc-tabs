@@ -37,30 +37,70 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 *{
-    font-family: 'Exo', sans-serif;
+  font-family: 'Exo', sans-serif;
 }
 
 ion-alert.custom-alert {
-    --backdrop-opacity: 0.7;
-  }
+  --backdrop-opacity: 0.7;
+}
 
-  .custom-alert .alert-wrapper {
-    background: #e5e5e5;
-    color: #000000;
-    border: 4px solid var(--ion-color-danger);
-    border-radius: 8px;
-  }
-
-  .custom-alert .alert-message {
-    color: #000000; /* Altere para a cor desejada */
-    font-size: 18px; /* Opcional: ajuste o tamanho da fonte */
-    font-weight: 700;
+.custom-alert .alert-wrapper {
+  position: relative; /* Necessário para o pseudo-elemento funcionar */
+  padding: 16px; /* Espaçamento interno do conteúdo */
+  background: #e5e5e5; /* Fundo do elemento */
+  border-radius: 12px; /* Arredondamento */
+  overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
   }
   
-  .custom-alert .alert-button {
-    padding: 16px;
-    background-color: var(--ion-color-danger);
-    color: var(--ion-color-danger-contrast);
-    border-radius: 12px;
-    font-size: large;
+  .custom-alert .alert-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px; /* Mesmo arredondamento do elemento principal */
+  padding: 3px; /* Espessura da borda */
+  background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0); /* Define o espaço interno */
+  mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude; /* Cria o espaço interno transparente */
+
   }
+
+.custom-alert .alert-message {
+  color: #000000; /* Altere para a cor desejada */
+  font-size: 16px; /* Opcional: ajuste o tamanho da fonte */
+  font-weight: 700;
+}
+
+.custom-alert .alert-button {
+  padding: 16px;
+  background-color: var(--ion-color-warning);
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: large;
+}
+
+.recenter-button {
+background: white;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 10px;
+margin: 10px;
+cursor: pointer;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 14px;
+}
+
+.recenter-button ion-icon {
+color: #c5000f; /* Cor do ícone */
+font-size: 18px;
+}

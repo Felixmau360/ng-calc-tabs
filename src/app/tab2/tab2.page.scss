@@ -1,5 +1,14 @@
+.header{
+  --background: var(--ion-color-warning-shade);
+}
+
+.header ion-title{
+  font-weight: 600;
+  color: #ffffff;
+}
+
 ion-content {
-    --background: var(--ion-color-danger-tint);
+    --background: linear-gradient(to right, var(--ion-color-warning-tint), var(--ion-color-dark-tint));
   }
 
 .mapa{
@@ -12,4 +21,5 @@ ion-content {
 ion-icon{
   text-align: center;
   margin-left: 3%;
+  color: #ffffff;
 }
