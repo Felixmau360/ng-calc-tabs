@@ -97,10 +97,29 @@ export class MapaComponent implements AfterViewInit {
   }
 
   createNearbyPlaceMarker(place: any) {
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.map,
       position: place.geometry.location,
       title: place.name,
+    });
+
+    marker.addListener('click', () => {
+      // Coordenadas do posto selecionado
+      const destinationLat = place.geometry.location.lat();
+      const destinationLng = place.geometry.location.lng();
+  
+      // URL para Google Maps
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destinationLat},${destinationLng}&travelmode=driving`;
+  
+      // URL para Waze
+      const wazeUrl = `https://www.waze.com/ul?ll=${destinationLat},${destinationLng}&navigate=yes`;
+  
+      // Opções para o usuário (Google Maps ou Waze)
+      if (confirm('Deseja navegar até este posto usando Google Maps? Cancelar para usar Waze.')) {
+        window.open(googleMapsUrl, '_blank');
+      } else {
+        window.open(wazeUrl, '_blank');
+      }
     });
   }
 
