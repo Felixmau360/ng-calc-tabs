@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { Browser } from '@capacitor/browser';
 
 declare var google: any;
 
@@ -13,9 +14,9 @@ export class MapaComponent implements AfterViewInit {
   mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
   geocoder = new google.maps.Geocoder();
   userAddress: string = '';
-
+  
   constructor() {}
-
+  
   async ngAfterViewInit() {
     try {
       const coordinates = await this.getCurrentPosition();
@@ -103,6 +104,10 @@ export class MapaComponent implements AfterViewInit {
       title: place.name,
     });
 
+    async function openLink(url: string) {
+      await Browser.open({ url });
+    }
+
     marker.addListener('click', () => {
       // Coordenadas do posto selecionado
       const destinationLat = place.geometry.location.lat();
@@ -116,9 +121,9 @@ export class MapaComponent implements AfterViewInit {
   
       // Opções para o usuário (Google Maps ou Waze)
       if (confirm('Deseja navegar até este posto usando Google Maps? Cancelar para usar Waze.')) {
-        window.open(googleMapsUrl, '_blank');
+        openLink(googleMapsUrl);
       } else {
-        window.open(wazeUrl, '_blank');
+        openLink(wazeUrl);
       }
     });
   }
