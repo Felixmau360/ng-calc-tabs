@@ -1,22 +1,21 @@
 <ion-header >
-  <ion-toolbar color="danger">
+  <ion-toolbar class="header">
     <ion-icon slot="start" size="large" name="location-sharp"></ion-icon>
     <ion-title>Calculadora de Eficiência</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>
-      localização: <strong>{{ localAtual }}</strong>
+      localização: <strong> {{ localAtual }} </strong>
     </ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
   <ion-card class="mapa">
-    <app-mapa></app-mapa>
+    <app-mapa></app-mapa> 
   </ion-card>
 </ion-content>
 

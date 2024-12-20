@@ -1,9 +1,9 @@
 .header{
-    --background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+    --background: var(--ion-color-success-shade);
 }
 
 .header ion-title{
-    font-weight: 800;
+    font-weight: 600;
     color: #000000;
 }
 
@@ -84,7 +84,7 @@ ion-icon{
     }
   
 .container{
-    margin-top: -10%;
+    margin-top: -6%;
     position: absolute;
     z-index: 2;
     background-color: #e9f6f5;
@@ -111,6 +111,3 @@ ion-button{
         justify-content: center;
         align-items: center;
     }
-
-
-

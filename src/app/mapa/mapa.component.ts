@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { Browser } from '@capacitor/browser';
 
 declare var google: any;
 
@@ -13,9 +14,9 @@ export class MapaComponent implements AfterViewInit {
   mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
   geocoder: any;
   userAddress: string = '';
-
+  
   constructor() {}
-
+  
   async ngAfterViewInit() {
     try {
       const coordinates = await this.getCurrentPosition();
@@ -109,6 +110,29 @@ export class MapaComponent implements AfterViewInit {
       const isGoogleMapsOpened = window.open(googleMapsUrl, '_system');
       if (!isGoogleMapsOpened) {
         window.open(wazeUrl, '_system');
+      }
+    });
+
+    async function openLink(url: string) {
+      await Browser.open({ url });
+    }
+
+    marker.addListener('click', () => {
+      // Coordenadas do posto selecionado
+      const destinationLat = place.geometry.location.lat();
+      const destinationLng = place.geometry.location.lng();
+  
+      // URL para Google Maps
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destinationLat},${destinationLng}&travelmode=driving`;
+  
+      // URL para Waze
+      const wazeUrl = `https://www.waze.com/ul?ll=${destinationLat},${destinationLng}&navigate=yes`;
+  
+      // Opções para o usuário (Google Maps ou Waze)
+      if (confirm('Deseja navegar até este posto usando Google Maps? Cancelar para usar Waze.')) {
+        openLink(googleMapsUrl);
+      } else {
+        openLink(wazeUrl);
       }
     });
   }
