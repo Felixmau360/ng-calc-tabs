@@ -11,24 +11,29 @@ declare var google: any;
 export class MapaComponent implements AfterViewInit {
   map: any;
   mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
-  geocoder: any;
+  geocoder = new google.maps.Geocoder();
   userAddress: string = '';
-
+  
   constructor() {}
-
+  
   async ngAfterViewInit() {
     try {
       const coordinates = await this.getCurrentPosition();
-      const latLng = {
-        lat: coordinates.coords.latitude,
-        lng: coordinates.coords.longitude,
-      };
 
-      this.initMap(latLng);
-      this.createCurrentLocationMarker(latLng);
-      this.addRecenterButton();
-      this.geocodeLatLng(latLng);
-      this.findNearbyGasStations(latLng);
+      if (coordinates && coordinates.coords) {
+        const latLng = {
+          lat: coordinates.coords.latitude,
+          lng: coordinates.coords.longitude,
+        };
+
+        this.initMap(latLng); // Inicializa o mapa
+        this.createCurrentLocationMarker(latLng); // Marcador azul
+        this.addRecenterButton(); // Botão de re-centralizar
+        this.geocodeLatLng(latLng); // Converte coordenadas para endereço
+        this.findNearbyGasStations(latLng); // Busca postos de gasolina
+      } else {
+        console.error('Coordinates ou coords não disponíveis.');
+      }
     } catch (error) {
       console.error('Erro ao obter a posição atual:', error);
     }
@@ -47,7 +52,6 @@ export class MapaComponent implements AfterViewInit {
 
     const mapElement = document.getElementById('map');
     this.map = new google.maps.Map(mapElement, mapOptions);
-    this.geocoder = new google.maps.Geocoder();
   }
 
   createCurrentLocationMarker(latLng: { lat: number; lng: number }) {
@@ -81,7 +85,7 @@ export class MapaComponent implements AfterViewInit {
     const service = new google.maps.places.PlacesService(this.map);
     const request = {
       location: latLng,
-      radius: 5000,
+      radius: 5000, // 5 km
       type: 'gas_station',
     };
 
