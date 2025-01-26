@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ng-calc-tabs</string>
-    <string name="title_activity_main">ng-calc-tabs</string>
+    <string name="app_name">KM Inteligente</string>
+    <string name="title_activity_main">KM Inteligente</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
 </resources>

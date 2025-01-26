@@ -1,5 +1,5 @@
 <ion-header >
-  <ion-toolbar color="danger">
+  <ion-toolbar class="header">
     <ion-icon slot="start" size="large" name="calculator-sharp"></ion-icon>
     <ion-title>Calculadora de Eficiência</ion-title>
   </ion-toolbar>
@@ -13,7 +13,7 @@
   <div class="container">
     <ion-grid>
       <ion-row class="paragrafo">
-        Insira o Desempenho do seu veiculo em km/l fornecido pelo computador de bordo:
+        Desempenho do seu veiculo em km/l fornecido pelo computador de bordo:
       </ion-row>
       <ion-row>
         <ion-col>
@@ -22,7 +22,7 @@
               Etanol (Km/L)
             </ion-card-header>
             <ion-card-content>
-              <ion-input type="number" [(ngModel)]="desempetanol" [clearOnEdit]="true"></ion-input>
+              <ion-input type="number" [(ngModel)]="desempetanol" readonly></ion-input>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -32,7 +32,7 @@
               Gasolina (Km/L)
             </ion-card-header>
             <ion-card-content>
-              <ion-input type="number" [(ngModel)]="desempgas" [clearOnEdit]="true"></ion-input>
+              <ion-input type="number" [(ngModel)]="desempgas" readonly></ion-input>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -64,25 +64,19 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
-    <ion-button
-    (click)="funcao(); setOpen(true)"
-    id="present-alert" 
-    expand="block">
-    Calcular</ion-button>
-
+    
+    <ion-button (click)="funcao(); setOpen(true)"
+    id="present-alert" expand="block">
+    Calcular
+    </ion-button>
   </div>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-      Publicidade
-  </ion-toolbar>
-</ion-footer>
+
 
 <ion-alert class="custom-alert"
   [isOpen]="isAlertOpen"
   message="{{resultado}}"
   [buttons]="alertButtons"
   (didDismiss)="setOpen(false)"
-></ion-alert> 
+></ion-alert>

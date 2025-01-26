@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-icon slot="start" size="large" name="settings"></ion-icon>
+    <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row class="linhatitulo">
+        <strong>Para Veículos com computador de bordo</strong>
+      </ion-row>
+      <ion-row class="paragrafo">
+        <strong>Insira abaixo as informações fornecidas pelo seu computador de bordo:</strong>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="etanol">
+            <ion-card-header>
+              Etanol (Km/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="desempetanol" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="gasolina">
+            <ion-card-header>
+              Gasolina (Km/L)
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="desempgas" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-button expand="block" (click)="registroCOMcomp()">Registrar</ion-button>
+
+      <ion-row class="linhatitulo">
+        <strong>Para Veículos sem computador de bordo</strong>
+      </ion-row>
+      <ion-row class="paragrafo">
+        <strong>Caso seu veiculo não tenha computador de bordo, vamos calcular o desempenho do seu veiculo manualmente.<br>
+        Passo a Passo:</strong><br>
+        1. Abasteça completamente o tanque do veículo e anote o valor do odômetro (quilometragem atual).
+          - Se preferir, zere o marcador parcial do veículo.<br>
+        2. Dirija normalmente até precisar reabastecer.<br>
+        3. Abasteça novamente o tanque até o mesmo nível e anote:<br>
+          - A quantidade de combustível reabastecida (em litros).<br>
+          - O valor do odômetro atual ou a distância percorrida (valor do odômetro	atual, menos valor do odômetro inicial) no marcador parcial.
+      </ion-row>
+      <ion-row class="paragrafo2">
+        Insira as informações para Abastecimento com <strong>Etanol</strong>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="etanol">
+            <ion-card-header>
+              Quilometros Rodados
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="rodadosEtanol" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="etanol">
+            <ion-card-header>
+              Litros Abastecidos
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="abastecidosEtanol" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row class="paragrafo3">
+        Insira as informações para Abastecimento com <strong>Gasolina</strong>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="gasolina">
+            <ion-card-header>
+              Quilometros Rodados
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="rodadosGas" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="gasolina">
+            <ion-card-header>
+              Litros Abastecidos
+            </ion-card-header>
+            <ion-card-content>
+              <ion-input type="number" [(ngModel)]="abastecidosGas" [clearOnEdit]="true"></ion-input>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-button class="btngas" expand="block" (click)="desempenho()">Calcular</ion-button>
+    </ion-grid>
+  </div>
+
+

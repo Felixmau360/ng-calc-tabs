@@ -1,15 +1,24 @@
 ion-content {
-    --background: var(--ion-color-danger-tint);
+    --background: #f2d4d4;
   }
 
 .mapa{
     justify-content: center;
     align-items: center;
-    height: 82%;
-    width: 95%;
+    height: 80%;
+    width: 94%;
 }
 
 ion-icon{
   text-align: center;
   margin-left: 3%;
+  color: #fff;
 }
+
+.header{
+  --background: var(--ion-color-danger);
+}
+  .header ion-title{
+      font-weight: 600;
+      color: #fff;
+  }

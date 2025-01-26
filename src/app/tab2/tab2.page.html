@@ -1,17 +1,17 @@
 <ion-header >
-  <ion-toolbar color="danger">
+  <ion-toolbar class="header">
     <ion-icon slot="start" size="large" name="location-sharp"></ion-icon>
-    <ion-title>Calculadora de Eficiência</ion-title>
+    <ion-title>Localize um Posto de Combustível</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="custom-content">
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
-      localização: {{ localAtual }}
-    </ion-card-title>
+      <ion-card-subtitle>
+      Sua localização: <strong>{{ localAtual }}</strong>
+    </ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
@@ -19,9 +19,3 @@
     <app-mapa></app-mapa>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-      Publicidade
-  </ion-toolbar>
-</ion-footer>

@@ -1,22 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
-
-  isAlertOpen = false;
-  alertButtons = ['Ok'];
-
-  setOpen(isOpen: boolean) {
-    this.isAlertOpen = isOpen;
-  }
-
-  constructor() {}
-
+export class Tab1Page implements OnInit {
 
   desempetanol:number = NaN;
   desempgas:number = NaN;
@@ -25,7 +16,28 @@ export class Tab1Page {
   consumoetanol:number = NaN;
   consumogas:number = NaN;
   resultado:string ="";
- 
+
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.dataService.desempEtanol$.subscribe(valor => {
+      this.desempetanol = valor;
+    });
+
+    this.dataService.desempGas$.subscribe(valor => {
+      this.desempgas = valor;
+    });
+  }
+  
+
+  isAlertOpen = false;
+  alertButtons = ['Ok'];
+
+  setOpen(isOpen: boolean) {
+    this.isAlertOpen = isOpen;
+  }
+  
  funcao(){
 
    this.consumoetanol = this.precoetanol / this.desempetanol;

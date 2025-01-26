@@ -1,9 +1,11 @@
 .calc{
-    --color-selected: var(--ion-color-danger);
-    --color: var(--ion-color-primary-tint);
+    --color-selected: var(--ion-color-success);
 }
 
 .local{
     --color-selected: var(--ion-color-danger);
-    --color: var(--ion-color-primary-tint);
+}
+
+.settings{
+    --color-selected: var(--ion-color-warning);
 }

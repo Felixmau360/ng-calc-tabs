@@ -51,18 +51,18 @@ export class MapaComponent implements AfterViewInit {
   }
 
   createCurrentLocationMarker(latLng: { lat: number; lng: number }) {
-    new google.maps.Marker({
+    const pinElement = new google.maps.marker.PinElement({
+      background: '#1A73E8',
+      borderColor: '#FFFFFF',
+      glyphColor: '#FFFFFF',
+      scale: 1.2
+    });
+  
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       map: this.map,
       position: latLng,
       title: 'Sua localização',
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: '#0000FF',
-        fillOpacity: 1,
-        scale: 10,
-        strokeColor: '#FFFFFF',
-        strokeWeight: 2,
-      },
+      content: pinElement.element
     });
   }
 
@@ -93,29 +93,43 @@ export class MapaComponent implements AfterViewInit {
   }
 
   createNearbyPlaceMarker(place: any) {
-    const marker = new google.maps.Marker({
+    const icon = document.createElement('div');
+    icon.innerHTML = '<i class="fa-solid fa-gas-pump"></i>';
+    icon.style.fontSize = '16px';
+    
+    const faPin = new google.maps.marker.PinElement({
+      glyph: icon,
+      glyphColor: '#FFFFFF',
+      background: '#66e253',
+      borderColor: '#FFFFFF',
+      scale: 1.1
+    });
+  
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       map: this.map,
       position: place.geometry.location,
       title: place.name,
+      content: faPin.element
     });
-
+  
     marker.addListener('click', () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-
-      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  
+      const googleMapsUrl = `https://www.google.maps/dir/?api=1&destination=${lat},${lng}`;
       const wazeUrl = `waze://?ll=${lat},${lng}&navigate=yes`;
-
+  
       const isGoogleMapsOpened = window.open(googleMapsUrl, '_system');
       if (!isGoogleMapsOpened) {
         window.open(wazeUrl, '_system');
       }
     });
   }
+  
 
   addRecenterButton() {
     const recenterButton = document.createElement('button');
-    recenterButton.innerHTML = `<ion-icon name="location-sharp" style="margin-right: 8px;"></ion-icon>Meu Local`;
+    recenterButton.innerHTML = `<ion-icon name="location-sharp" style="margin-right: 8px; color: #1a73e8;"></ion-icon>Meu Local`;
     recenterButton.classList.add('recenter-button');
 
     recenterButton.addEventListener('click', async () => {

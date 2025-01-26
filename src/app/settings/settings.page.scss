@@ -1,0 +1,198 @@
+.header{
+  --background: var(--ion-color-warning);
+}
+  .header ion-title{
+      font-weight: 600;
+      color: #000000;
+  }
+
+ion-icon{
+  text-align: center;
+  margin-left: 3%;
+  color: #000000;
+}
+
+.paragrafo {
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessário para o pseudo-elemento funcionar */
+  padding: 16px; /* Espaçamento interno do conteúdo */
+  background: white; /* Fundo do elemento */
+  border-radius: 8px; /* Arredondamento */
+  z-index: 0; /* Para o pseudo-elemento ficar atrás */
+  overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
+  }
+    
+  .paragrafo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px; /* Mesmo arredondamento do elemento principal */
+    padding: 3px; /* Espessura da borda */
+    background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0); /* Define o espaço interno */
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude; /* Cria o espaço interno transparente */
+    z-index: -1; /* Mantém o gradiente no fundo */
+    }
+
+.etanol{
+  border: 3px solid var(--ion-color-success);
+  border-radius: 8px;
+  background-color: #ffffff;
+  height: 120px;
+}
+  .etanol ion-card-header{
+      color: var(--ion-color-success);
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+  }
+  .etanol ion-input{
+    color: var(--ion-color-dark);
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.gasolina{
+  border: 3px solid var(--ion-color-warning);
+  border-radius: 8px;
+  background-color: #ffffff;
+  height: 120px;
+}
+  .gasolina ion-card-header{
+      color: var(--ion-color-warning);
+      font-size: 14px;
+      text-align: center;
+      font-weight: 500;
+  }
+  .gasolina ion-input{
+    color: var(--ion-color-dark);
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.paragrafo2 {
+  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessário para o pseudo-elemento funcionar */
+  padding: 16px; /* Espaçamento interno do conteúdo */
+  background: white; /* Fundo do elemento */
+  border-radius: 8px; /* Arredondamento */
+  z-index: 0; /* Para o pseudo-elemento ficar atrás */
+  overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
+  }
+  
+  .paragrafo2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px; /* Mesmo arredondamento do elemento principal */
+    padding: 3px; /* Espessura da borda */
+    background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0); /* Define o espaço interno */
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude; /* Cria o espaço interno transparente */
+    z-index: -1; /* Mantém o gradiente no fundo */
+    }
+
+.paragrafo3 {
+  margin-top: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessário para o pseudo-elemento funcionar */
+  padding: 16px; /* Espaçamento interno do conteúdo */
+  background: white; /* Fundo do elemento */
+  border-radius: 8px; /* Arredondamento */
+  z-index: 0; /* Para o pseudo-elemento ficar atrás */
+  overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
+  }
+  
+  .paragrafo3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px; /* Mesmo arredondamento do elemento principal */
+    padding: 3px; /* Espessura da borda */
+    background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0); /* Define o espaço interno */
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude; /* Cria o espaço interno transparente */
+    z-index: -1; /* Mantém o gradiente no fundo */
+    }
+
+.container{
+  position: absolute;
+  z-index: 2;
+  background-color: #f6f2c3;
+}
+
+.btnetanol{
+  --background: var(--ion-color-success);
+  color: var(--ion-color-dark);
+}
+
+.btngas{
+  --background: var(--ion-color-warning);
+  color: var(--ion-color-dark);
+}
+
+.linhatitulo{
+  background: var(--ion-color-warning);
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Necessário para o pseudo-elemento funcionar */
+  padding: 16px; /* Espaçamento interno do conteúdo */
+  border-radius: 8px; /* Arredondamento */
+}
+
+ion-button{
+  height: 45px;
+  margin: -1% 2% 5%;
+  --background: var(--ion-color-warning);
+  font-weight: 600;
+  font-size: large;
+  --border-radius: 8px;
+  color: #000000;
+}
