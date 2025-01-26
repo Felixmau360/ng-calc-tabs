@@ -1,3 +1,23 @@
 .titulo-destaque{
     color: var(--ion-color-success);
 }
+
+.content{
+    --padding: 16px;
+    --background: #d9cefd;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-card{
+    margin: 7%;
+}
+
+ion-button{
+    margin: 0% 7%;
+    --background: var(--ion-color-tertiary-shade);
+    --color: var(--ion-color-tertiary-contrast);
+    width: 86%;
+    height: 30px;
+    --border-radius: 8px;
+}
