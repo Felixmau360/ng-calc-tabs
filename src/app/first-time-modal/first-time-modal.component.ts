@@ -13,8 +13,7 @@ export class FirstTimeModalComponent {
   constructor(private modalController: ModalController, private router: Router) { }
 
   async dismissModal() {
-   await this.modalController.dismiss();
-   this.router.navigate(['/settings']);
-}
-
+    await this.modalController.dismiss();
+    this.router.navigate(['/tabs/settings']);
+ }
 }

@@ -23,16 +23,13 @@ export class SettingsPage {
   desempenho() {
     this.dataService.setDesempEtanol(this.desempetanol = Number((this.rodadosEtanol / this.abastecidosEtanol).toFixed(2)));
     this.dataService.setDesempGas(this.desempgas = Number((this.rodadosGas / this.abastecidosGas).toFixed(2)));
-    this.router.navigate(['/tabs/tab1']);
+    this.router.navigate(['tabs/tab1']);
     }
   
 
   registroCOMcomp() {
     this.dataService.setDesempEtanol(this.desempetanol);
     this.dataService.setDesempGas(this.desempgas);
-    this.router.navigate(['/tabs/tab1']);
+    this.router.navigate(['tabs/tab1']);
     }
-
-  
-    
 }

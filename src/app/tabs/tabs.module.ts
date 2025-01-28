@@ -2,6 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // Adicione essa linha
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
@@ -13,7 +14,8 @@ import { FirstTimeModalComponent } from '../first-time-modal/first-time-modal.co
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    RouterModule, // Adicione essa linha
+    TabsPageRoutingModule,
   ],
   declarations: [TabsPage, FirstTimeModalComponent]
 })

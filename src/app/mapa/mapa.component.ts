@@ -4,9 +4,9 @@ import { Geolocation } from '@capacitor/geolocation';
 declare var google: any;
 
 @Component({
-  selector: 'app-mapa',
-  templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.scss'],
+    selector: 'app-mapa',
+    templateUrl: './mapa.component.html',
+    styleUrls: ['./mapa.component.scss'],
 })
 export class MapaComponent implements AfterViewInit {
   map: any;
@@ -116,7 +116,7 @@ export class MapaComponent implements AfterViewInit {
       content: faPin.element
     });
   
-    marker.addListener('click', () => {
+    marker.addEventListener('gmp-click', () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
   
@@ -130,7 +130,6 @@ export class MapaComponent implements AfterViewInit {
     });
   }
   
-
   addRecenterButton() {
     const recenterButton = document.createElement('button');
     recenterButton.innerHTML = `<ion-icon name="location-sharp" style="margin-right: 8px; color: #1a73e8;"></ion-icon>Meu Local`;

@@ -1,17 +1,28 @@
 .titulo-destaque{
     color: var(--ion-color-success);
-}
+    font-family: Josefin Sans;
+    font-size: 23px;
+    }
 
 .content{
     --padding: 16px;
     --background: #d9cefd;
     justify-content: center;
     align-items: center;
-}
+    }
 
 ion-card{
-    margin: 7%;
-}
+    margin: 4%;
+    --background: #fff;
+    }
+
+.logo-imagem {
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    }
 
 ion-button{
     margin: 0% 7%;
@@ -20,4 +31,14 @@ ion-button{
     width: 86%;
     height: 30px;
     --border-radius: 8px;
+    font-family: Josefin Sans;
 }
+
+.header{
+    --background: var(--ion-color-tertiary);
+}
+    .header ion-title{
+        font-weight: 600;
+        color: #fff;
+        font-family: Josefin Sans;
+    }

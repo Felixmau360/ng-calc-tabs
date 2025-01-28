@@ -4,6 +4,7 @@
   .header ion-title{
       font-weight: 600;
       color: #000000;
+      font-family: Josefin Sans;
   }
 
 ion-icon{
@@ -172,6 +173,7 @@ ion-icon{
 .btngas{
   --background: var(--ion-color-warning);
   color: var(--ion-color-dark);
+  font-family: Josefin Sans;
 }
 
 .linhatitulo{
@@ -185,12 +187,14 @@ ion-icon{
   position: relative; /* Necessário para o pseudo-elemento funcionar */
   padding: 16px; /* Espaçamento interno do conteúdo */
   border-radius: 8px; /* Arredondamento */
+  font-family: Josefin Sans;
 }
 
 ion-button{
   height: 45px;
   margin: -1% 2% 5%;
   --background: var(--ion-color-warning);
+  font-family: Josefin Sans;
   font-weight: 600;
   font-size: large;
   --border-radius: 8px;
