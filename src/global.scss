@@ -105,3 +105,26 @@ ion-alert.custom-alert {
 }
 
 
+ion-content {
+  --ion-text-color: #000000;
+}
+
+ion-card-header, 
+ion-card-content,
+ion-card-subtitle,
+ion-title,
+.paragrafo,
+.paragrafo2,
+.paragrafo3,
+.linhatitulo {
+  color: #000000;
+}
+
+.header {
+  ion-title {
+    color: #000000;
+  }
+  ion-icon {
+    color: #000000;
+  }
+}

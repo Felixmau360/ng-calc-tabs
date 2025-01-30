@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { AlertController } from '@ionic/angular';
 
 declare var google: any;
 
@@ -14,7 +15,7 @@ export class MapaComponent implements AfterViewInit {
   geocoder = new google.maps.Geocoder();
   userAddress: string = '';
   
-  constructor() {}
+  constructor(private alertController: AlertController) {}
   
   async ngAfterViewInit() {
     try {
@@ -116,19 +117,14 @@ export class MapaComponent implements AfterViewInit {
       content: faPin.element
     });
   
-    marker.addEventListener('gmp-click', () => {
+    marker.addListener('click', async () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-  
-      const googleMapsUrl = `https://www.google.maps/dir/?api=1&destination=${lat},${lng}`;
-      const wazeUrl = `waze://?ll=${lat},${lng}&navigate=yes`;
-  
-      const isGoogleMapsOpened = window.open(googleMapsUrl, '_system');
-      if (!isGoogleMapsOpened) {
-        window.open(wazeUrl, '_system');
-      }
+    
+      const navigationUrl = `geo:${lat},${lng}?q=${lat},${lng}`;
+      window.open(navigationUrl, '_system');
     });
-  }
+   }
   
   addRecenterButton() {
     const recenterButton = document.createElement('button');

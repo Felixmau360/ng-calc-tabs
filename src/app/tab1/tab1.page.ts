@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,7 +7,6 @@ import { DataService } from '../services/data.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-
   desempetanol:number = NaN;
   desempgas:number = NaN;
   precogas:number = NaN;
@@ -20,7 +18,9 @@ export class Tab1Page implements OnInit {
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.dataService.loadStoredValues();
+
     this.dataService.desempEtanol$.subscribe(valor => {
       this.desempetanol = valor;
     });
