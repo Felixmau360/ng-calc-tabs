@@ -14,12 +14,11 @@ ion-icon{
 }
 
 .paragrafo {
-  margin-top: 3%;
-  margin-left: 2%;
-  margin-right: 2%;
-  text-align: left;
+  margin: 3% 4% 0%;
+  text-align: center;
   justify-content: center;
   align-items: center;
+  font-weight: 400 !important; 
   position: relative; /* Necessário para o pseudo-elemento funcionar */
   padding: 16px; /* Espaçamento interno do conteúdo */
   background: white; /* Fundo do elemento */
@@ -27,27 +26,31 @@ ion-icon{
   z-index: 0; /* Para o pseudo-elemento ficar atrás */
   overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
   }
-    
+  
   .paragrafo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 8px; /* Mesmo arredondamento do elemento principal */
-    padding: 3px; /* Espessura da borda */
-    background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
-    -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0); /* Define o espaço interno */
-    mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude; /* Cria o espaço interno transparente */
-    z-index: -1; /* Mantém o gradiente no fundo */
-    }
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px; /* Mesmo arredondamento do elemento principal */
+  padding: 3px; /* Espessura da borda */
+  background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0); /* Define o espaço interno */
+  mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude; /* Cria o espaço interno transparente */
+  z-index: -1; /* Mantém o gradiente no fundo */
+  }
+
+  ion-text{
+    text-align: justify;
+  }
 
 .etanol{
   border: 3px solid var(--ion-color-success);
@@ -88,12 +91,11 @@ ion-icon{
 }
 
 .paragrafo2 {
-  margin-top: 5%;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin: 2% 4% 0%;
   text-align: center;
   justify-content: center;
   align-items: center;
+  font-weight: 400;
   position: relative; /* Necessário para o pseudo-elemento funcionar */
   padding: 16px; /* Espaçamento interno do conteúdo */
   background: white; /* Fundo do elemento */
@@ -103,42 +105,41 @@ ion-icon{
   }
   
   .paragrafo2::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 8px; /* Mesmo arredondamento do elemento principal */
-    padding: 3px; /* Espessura da borda */
-    background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
-    -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0); /* Define o espaço interno */
-    mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude; /* Cria o espaço interno transparente */
-    z-index: -1; /* Mantém o gradiente no fundo */
-    }
-
-.paragrafo3 {
-  margin-top: 1%;
-  margin-left: 2%;
-  margin-right: 2%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Necessário para o pseudo-elemento funcionar */
-  padding: 16px; /* Espaçamento interno do conteúdo */
-  background: white; /* Fundo do elemento */
-  border-radius: 8px; /* Arredondamento */
-  z-index: 0; /* Para o pseudo-elemento ficar atrás */
-  overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px; /* Mesmo arredondamento do elemento principal */
+  padding: 3px; /* Espessura da borda */
+  background: linear-gradient(to right, var(--ion-color-success), var(--ion-color-warning));
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0); /* Define o espaço interno */
+  mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude; /* Cria o espaço interno transparente */
+  z-index: -1; /* Mantém o gradiente no fundo */
   }
-  
-  .paragrafo3::before {
+
+  .paragrafo3 {
+    margin: 0% 4% 0%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    position: relative; /* Necessário para o pseudo-elemento funcionar */
+    padding: 16px; /* Espaçamento interno do conteúdo */
+    background: white; /* Fundo do elemento */
+    border-radius: 8px; /* Arredondamento */
+    z-index: 0; /* Para o pseudo-elemento ficar atrás */
+    overflow: hidden; /* Garante que o gradiente não ultrapasse os limites */
+    }
+    
+    .paragrafo3::before {
     content: '';
     position: absolute;
     top: 0;

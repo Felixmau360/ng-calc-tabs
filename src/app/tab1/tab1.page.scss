@@ -14,10 +14,11 @@ ion-icon{
   }
 
 .paragrafo {
+    margin: 0% 4% 0%;
     text-align: center;
     justify-content: center;
     align-items: center;
-    font-weight: 800;
+    font-weight: 400;
     position: relative; /* Necessário para o pseudo-elemento funcionar */
     padding: 16px; /* Espaçamento interno do conteúdo */
     background: white; /* Fundo do elemento */
@@ -51,6 +52,7 @@ ion-icon{
     border: 3px solid var(--ion-color-success);
     border-radius: 8px;
     background-color: #ffffff;
+    text-align: center;
 }
     .etanol ion-card-header{
         color: var(--ion-color-success);
@@ -69,6 +71,7 @@ ion-icon{
     border: 3px solid var(--ion-color-warning);
     border-radius: 8px;
     background-color: #ffffff;
+    text-align: center;
 }
     .gasolina ion-card-header{
         color: var(--ion-color-warning);
@@ -82,9 +85,14 @@ ion-icon{
         text-align: center;
         font-weight: 500;
     }
+    
+ion-text{
+    font-size: 17px;
+    text-align: center;
+    font-weight: 700;
+}
   
 .container{
-    margin-top: -10px;
     position: absolute;
     z-index: 2;
     background-color: #d8f2d4;
@@ -93,7 +101,7 @@ ion-icon{
 
 ion-button{
     height: 45px;
-    margin: -1% 2% 5%;
+    margin: -1% 5% 5%;
     --background: var(--ion-color-success);
     --border-radius: 8px;
     color: #000000;
@@ -112,3 +120,7 @@ ion-button{
         justify-content: center;
         align-items: center;
     }
+
+.grid{
+    margin-top: -65px;
+}

@@ -41,8 +41,12 @@ export class MapaComponent implements AfterViewInit {
   }
 
   async getCurrentPosition() {
-    return await Geolocation.getCurrentPosition();
-  }
+    return await Geolocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 30000,
+        maximumAge: 0
+    });
+}
 
   initMap(latLng: { lat: number; lng: number }) {
     const mapOptions = {
