@@ -122,7 +122,7 @@ export class MapaComponent implements AfterViewInit {
       content: faPin.element
     });
   
-    marker.addEventListener('gmp-click', async () => {
+    marker.addEventListener('click', async () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
     
