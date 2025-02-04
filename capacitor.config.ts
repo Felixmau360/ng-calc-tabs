@@ -5,19 +5,14 @@ const config: CapacitorConfig = {
   appName: 'Km Inteligente',
   webDir: 'www',
 
-  plugins: {
-    SplashScreen: {
-      launchShowDuration: 4000,
-      launchAutoHide: true,
-      androidScaleType: "CENTER",
-      backgroundColor: "#ffffff",
-      showSpinner: true,
-      spinnerColor: "var(--ion-color-success)", // Cor do spinner
-      spinnerStyle: "circular-small", // Tamanho do spinner
-      splashFullScreen: true,
-      splashImmersive: true
-    }
-  }
+  android: {
+    backgroundColor: "#FFFFFF",
+    overrideUserAgent: "native",
+    appendUserAgent: "custom",
+    initialFocus: true
+  },
+
+
 };
 
 export default config;

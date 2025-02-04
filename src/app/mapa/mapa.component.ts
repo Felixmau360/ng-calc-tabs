@@ -53,6 +53,7 @@ export class MapaComponent implements AfterViewInit {
       center: latLng,
       zoom: 15,
       mapId: this.mapId,
+      vectorMapType: 'ROAD'
     };
 
     const mapElement = document.getElementById('map');
@@ -121,7 +122,7 @@ export class MapaComponent implements AfterViewInit {
       content: faPin.element
     });
   
-    marker.addListener('click', async () => {
+    marker.addEventListener('gmp-click', async () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
     

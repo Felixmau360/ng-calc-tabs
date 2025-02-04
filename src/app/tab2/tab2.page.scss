@@ -33,6 +33,21 @@ ion-icon{
       color: #fff;
   }
 
-  ion-card-subtitle{
-    background-color: #ffffff;
+ion-card-subtitle{
+  background-color: #ffffff;
   }
+
+ion-card{
+  background-color: #ffffff;
+}
+
+.titulo{
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Josefin Sans;
+  text-align: center;
+}
+
+.card-titulo{
+  background-color: var(--ion-color-danger);
+}
