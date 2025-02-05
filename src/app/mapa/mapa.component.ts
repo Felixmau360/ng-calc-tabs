@@ -19,41 +19,91 @@ export class MapaComponent implements AfterViewInit {
   
   async ngAfterViewInit() {
     try {
-      const coordinates = await this.getCurrentPosition();
-
-      if (coordinates && coordinates.coords) {
-        const latLng = {
-          lat: coordinates.coords.latitude,
-          lng: coordinates.coords.longitude,
-        };
-
-        this.initMap(latLng); // Inicializa o mapa
-        this.createCurrentLocationMarker(latLng); // Marcador azul
-        this.addRecenterButton(); // Botão de re-centralizar
-        this.geocodeLatLng(latLng); // Converte coordenadas para endereço
-        this.findNearbyGasStations(latLng); // Busca postos de gasolina
-      } else {
-        console.error('Coordinates ou coords não disponíveis.');
-      }
+        const coordinates = await this.getAveragePosition();
+        
+        if (coordinates && coordinates.coords) {
+            const latLng = {
+                lat: coordinates.coords.latitude,
+                lng: coordinates.coords.longitude
+            };
+            
+            this.initMap(latLng);
+            this.createCurrentLocationMarker(latLng);
+            this.addRecenterButton();
+            this.geocodeLatLng(latLng);
+            this.findNearbyGasStations(latLng);
+        }
     } catch (error) {
-      console.error('Erro ao obter a posição atual:', error);
+        const alert = await this.alertController.create({
+            header: 'Erro de Localização',
+            message: 'Verifique se o GPS está ativado e se o aplicativo tem permissão para usá-lo',
+            buttons: ['OK']
+        });
+        
+        await alert.present();
     }
-  }
+}
 
   async getCurrentPosition() {
-    return await Geolocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 30000,
-        maximumAge: 0
-    });
+    let tentativas = 0;
+    const maxTentativas = 3;
+    
+    while (tentativas < maxTentativas) {
+        const position = await Geolocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 30000,
+            maximumAge: 0
+        });
+        
+        if (position.coords.accuracy <= 20) { // precisão em metros
+            return position;
+        }
+        
+        tentativas++;
+        await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    
+    throw new Error('Não foi possível obter uma localização precisa');
 }
+async getAveragePosition() {
+  const amostras = 3;
+  const posicoes = [];
+  
+  for (let i = 0; i < amostras; i++) {
+      const position = await Geolocation.getCurrentPosition({
+          enableHighAccuracy: true,
+          timeout: 30000,
+          maximumAge: 0
+      });
+      
+      posicoes.push({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+      });
+      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  
+  const mediaLat = posicoes.reduce((acc, pos) => acc + pos.lat, 0) / amostras;
+  const mediaLng = posicoes.reduce((acc, pos) => acc + pos.lng, 0) / amostras;
+  
+  return {
+      coords: {
+          latitude: mediaLat,
+          longitude: mediaLng
+      }
+  };
+}
+
+
+
+
 
   initMap(latLng: { lat: number; lng: number }) {
     const mapOptions = {
       center: latLng,
       zoom: 15,
       mapId: this.mapId,
-      vectorMapType: 'ROAD'
     };
 
     const mapElement = document.getElementById('map');
@@ -122,7 +172,7 @@ export class MapaComponent implements AfterViewInit {
       content: faPin.element
     });
   
-    marker.addEventListener('click', async () => {
+    marker.addListener('click', async () => {
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
     
