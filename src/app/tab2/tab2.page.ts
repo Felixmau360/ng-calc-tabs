@@ -12,7 +12,7 @@ import { Geolocation } from '@capacitor/geolocation';
 export class Tab2Page implements OnInit {
 
   localAtual: string = '';
-  apiKey: string = 'AIzaSyB8TyDgHKeVm-0CMhgkq9nJdQgLy7i_9rQ';
+  apiKey: string = 'Sua_API_aqui';
 
   constructor(private http: HttpClient) {}
 
