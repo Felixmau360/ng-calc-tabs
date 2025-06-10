@@ -11,7 +11,7 @@ declare var google: any;
 })
 export class MapaComponent implements AfterViewInit {
   map: any;
-  mapId: string = '1532e00fbac2f7d1'; // Seu Map ID
+  mapId: string = ''; // Seu Map ID
   geocoder = new google.maps.Geocoder();
   userAddress: string = '';
   
